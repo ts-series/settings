@@ -16,16 +16,8 @@ This platform-agnostic settings and translation loader for TypeScript maintains 
 
 ## Installation
 
-Deno (JSR):
-
-```ts
-import { loadSettings, loadTranslations } from "jsr:@ts-series/settings";
-```
-
-Node (npm):
-
 ```bash
-npm install @ts-series/settings
+pnpm install @ts-series/settings
 ```
 
 
