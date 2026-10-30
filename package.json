@@ -1,6 +1,6 @@
 {
 	"name": "@ts-series/settings",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"license": "(0BSD OR Apache-2.0)",
 	"description": "A lightweight TypeScript library that loads YAML settings and translations at runtime, plus a CLI that can pre-generate them ahead of time as statically typed code.",
 	"keywords": [
@@ -24,7 +24,7 @@
 	"devEngines": {
 		"packageManager": {
 			"name": "pnpm",
-			"onFail": "error"
+			"onFail": "warn"
 		}
 	},
 	"dependencies": {
@@ -38,15 +38,13 @@
 	"scripts": {
 		"build": "rm -rf dist && tsc && chmod +x dist/cli.js",
 		"prepublishOnly": "pnpm run build",
-
 		"build:bin": "rm -rf build bin && esbuild src/cli.ts --bundle --platform=node --format=esm --outfile=build/sgen.mjs && mkdir -p bin && node --build-sea sea-config.json",
 		"install:bin": "pnpm run build:bin && mkdir -p ~/.local/bin && install -m 755 bin/sgen ~/.local/bin/sgen",
 		"uninstall:bin": "rm -f ~/.local/bin/sgen",
-
 		"bundle": "esbuild src/cli.ts --bundle --platform=node --format=esm --outfile=build/cli.js"
 	},
 	"bin": {
-		"sgen": "./dist/cli.js"
+		"sgen": "dist/cli.js"
 	},
 	"exports": {
 		".": {
@@ -62,6 +60,6 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ts-series/settings.git"
+		"url": "git+https://github.com/ts-series/settings.git"
 	}
 }
