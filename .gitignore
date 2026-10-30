@@ -1,0 +1,19 @@
+bin/
+build/
+dist/
+node_modules/
+
+# HIDDEN SOURCE FILES
+.*.ts
+
+# CACHES AND LOGS
+*.tsbuildinfo
+*.log
+
+# ENVIRONMENT
+.env
+.env.*
+!.env.example
+
+# TOOLS
+.vscode/

@@ -1,0 +1,67 @@
+{
+	"name": "@ts-series/settings",
+	"version": "2.0.0",
+	"license": "(0BSD OR Apache-2.0)",
+	"description": "A lightweight TypeScript library that loads YAML settings and translations at runtime, plus a CLI that can pre-generate them ahead of time as statically typed code.",
+	"keywords": [
+		"config",
+		"i18n",
+		"interpolation",
+		"pluralization",
+		"settings",
+		"translations",
+		"typescript",
+		"yaml"
+	],
+	"type": "module",
+	"sideEffects": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=26"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"onFail": "error"
+		}
+	},
+	"dependencies": {
+		"@ts-series/case": "^1.1.1"
+	},
+	"devDependencies": {
+		"@types/node": "^26.1.1",
+		"esbuild": "^0.28.2",
+		"typescript": "^7.0.2"
+	},
+	"scripts": {
+		"build": "rm -rf dist && tsc && chmod +x dist/cli.js",
+		"prepublishOnly": "pnpm run build",
+
+		"build:bin": "rm -rf build bin && esbuild src/cli.ts --bundle --platform=node --format=esm --outfile=build/sgen.mjs && mkdir -p bin && node --build-sea sea-config.json",
+		"install:bin": "pnpm run build:bin && mkdir -p ~/.local/bin && install -m 755 bin/sgen ~/.local/bin/sgen",
+		"uninstall:bin": "rm -f ~/.local/bin/sgen",
+
+		"bundle": "esbuild src/cli.ts --bundle --platform=node --format=esm --outfile=build/cli.js"
+	},
+	"bin": {
+		"sgen": "./dist/cli.js"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"LICENSE-0BSD",
+		"LICENSE-APACHE",
+		"CONTRIBUTING.md"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ts-series/settings.git"
+	}
+}

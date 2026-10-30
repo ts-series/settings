@@ -1,0 +1,7 @@
+{
+	"main": "build/sgen.mjs",
+	"mainFormat": "module",
+	"output": "bin/sgen",
+	"disableExperimentalSEAWarning": true,
+	"useCodeCache": true
+}
